@@ -619,17 +619,6 @@ The project is developed with an emphasis on:
 
 # Roadmap
 
-```text
-Phase 1  ████████████████████  Completed
-Phase 2  ████████████████████  Completed
-Phase 3  ████████████████████  Completed
-Phase 4  ████████████████████  Completed
-Phase 5  ████████████████████  Completed
-Phase 6  ██████████░░░░░░░░░░  In Progress
-Phase 7  ░░░░░░░░░░░░░░░░░░░░  Planned
-Phase 8  ░░░░░░░░░░░░░░░░░░░░  Planned
-```
-
 | Phase | Description | Status |
 |---|---|---|
 | Phase 1 | Project Foundation | Completed |
@@ -637,9 +626,15 @@ Phase 8  ░░░░░░░░░░░░░░░░░░░░  Planned
 | Phase 3 | Authentication & Authorization | Completed |
 | Phase 4 | Core Career Backend | Completed |
 | Phase 5 | Dashboard Logic | Completed |
-| Phase 6 | Frontend | In Progress |
-| Phase 7 | Full-Stack Integration | Planned |
-| Phase 8 | Testing, Security & Deployment | Planned |
+| Phase 6 | Frontend Integration | In Progress |
+| Phase 7 | Testing | Planned |
+| Phase 8 | Docker | Planned |
+| Phase 9 | Resume Management | Planned |
+| Phase 10 | Project/portfolio management | Planned |
+| Phase 11 | Skill Tracking | Planned |
+| Phase 12 | Interview tracking | Planned |
+| Phase 13 | Career analytics | Planned |
+| Phase 14 | AI Career Assistant | Planned |
 
 ---
 
@@ -694,13 +689,31 @@ Core Career Backend
 Dashboard Logic
     │
     ▼
-Frontend                  ← CURRENT
+Frontend Integration                 ← CURRENT
     │
     ▼
-Full-Stack Integration
+Testing
     │
     ▼
-Testing, Security & Deployment
+Docker
+    │
+    ▼
+Resume management
+    │
+    ▼
+Project/portfolio management
+    │
+    ▼
+Skill Tracking
+    │
+    ▼
+Interview tracking
+    │
+    ▼
+Career analytics
+    │
+    ▼
+AI Career Assistant
 ```
 
 ---
