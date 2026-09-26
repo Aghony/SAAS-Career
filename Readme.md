@@ -1,58 +1,68 @@
-# Career SaaS
+Career SaaS
 
 A full-stack SaaS platform designed to help users manage their career journey, including professional profiles, career planning, job applications, resumes, and career-related data in one centralized platform.
 
-> **Status:** In Development
-> **Current Phase:** Phase 3 — Authentication & Authorization
+Status: In Development
+Current Phase: Phase 6 — Frontend
 
----
-
-## Overview
+Overview
 
 Career SaaS is a personal career management platform built with a modern backend architecture and designed to be extended into a full-stack SaaS application.
 
 The project focuses on building a production-oriented system with:
 
-* Secure authentication
-* User profile management
-* Career planning
-* Job application tracking
-* Resume management
-* Structured backend architecture
-* Scalable database design
-* RESTful API
+Secure authentication
+
+User profile management
+
+Career planning
+
+Job application tracking
+
+Resume management
+
+Structured backend architecture
+
+Scalable database design
+
+RESTful API
 
 The project is being developed incrementally, starting from the backend foundation before moving into the frontend and full-stack integration.
 
----
+Tech Stack
 
-## Tech Stack
+Backend
 
-### Backend
+Node.js
 
-* **Node.js**
-* **TypeScript**
-* **Express.js**
-* **Prisma ORM**
-* **PostgreSQL**
-* **JWT**
-* **bcrypt**
-* **ES Modules**
+TypeScript
 
-### Development Tools
+Express.js
 
-* **Git**
-* **GitHub**
-* **npm**
-* **VS Code**
+Prisma ORM
 
----
+PostgreSQL
 
-## Architecture
+JWT
+
+bcrypt
+
+ES Modules
+
+Development Tools
+
+Git
+
+GitHub
+
+npm
+
+VS Code
+
+Architecture
 
 The backend follows a layered architecture to keep business logic separated from HTTP handling and database access.
 
-```text
 Client
   │
   ▼
@@ -72,35 +82,31 @@ Prisma ORM
   │
   ▼
 PostgreSQL
-```
 
-### Layer Responsibilities
+Layer Responsibilities
 
-**Routes**
+Routes
 
 Defines API endpoints and connects them to controllers and middleware.
 
-**Controllers**
+Controllers
 
 Handles HTTP requests and responses.
 
-**Services**
+Services
 
 Contains business logic and application rules.
 
-**Repositories**
+Repositories
 
 Handles database access and abstracts Prisma operations from the service layer.
 
-**Middleware**
+Middleware
 
 Handles authentication, validation, error handling, and other request-level processing.
 
----
+Project Structure
 
-## Project Structure
-
-```text
 backend/
 ├── prisma/
 │   └── schema.prisma
@@ -120,48 +126,53 @@ backend/
 ├── package.json
 ├── tsconfig.json
 └── README.md
-```
 
----
+Development Phases
 
-# Development Phases
+Phase 1 — Project Foundation
 
-## Phase 1 — Project Foundation
-
-**Status: Completed**
+Status: Completed
 
 Initial backend setup and project architecture.
 
 Goals:
 
-* Initialize Node.js project
-* Configure TypeScript
-* Configure Express
-* Configure environment variables
-* Establish project structure
-* Configure development tooling
-* Establish backend architecture
+Initialize Node.js project
 
----
+Configure TypeScript
 
-## Phase 2 — Database & Repository Layer
+Configure Express
 
-**Status: Completed**
+Configure environment variables
+
+Establish project structure
+
+Configure development tooling
+
+Establish backend architecture
+
+Phase 2 — Database & Repository Layer
+
+Status: Completed
 
 Database infrastructure and data-access layer.
 
 Goals:
 
-* Configure PostgreSQL
-* Configure Prisma
-* Design database schema
-* Generate Prisma client
-* Create repositories
-* Separate database logic from business logic
+Configure PostgreSQL
+
+Configure Prisma
+
+Design database schema
+
+Generate Prisma client
+
+Create repositories
+
+Separate database logic from business logic
 
 Architecture:
 
-```text
 Service
    ↓
 Repository
@@ -169,36 +180,45 @@ Repository
 Prisma
    ↓
 PostgreSQL
-```
 
----
+Phase 3 — Authentication & Authorization
 
-## Phase 3 — Authentication & Authorization
-
-**Status: Completed**
+Status: Completed
 
 Implement secure user authentication and session management.
 
-### Implemented
+Implemented
 
-* User registration
-* User login
-* Password hashing
-* Password verification
-* Access tokens
-* Refresh tokens
-* Refresh token rotation
-* Refresh token hashing
-* Logout
-* Authentication middleware
-* Protected routes
-* User profile retrieval
-* Express `Request.user` type augmentation
-* Centralized application errors
+User registration
 
-### Authentication Flow
+User login
 
-```text
+Password hashing
+
+Password verification
+
+Access tokens
+
+Refresh tokens
+
+Refresh token rotation
+
+Refresh token hashing
+
+Logout
+
+Authentication middleware
+
+Protected routes
+
+User profile retrieval
+
+Express Request.user type augmentation
+
+Centralized application errors
+
+Authentication Flow
+
 Register
    │
    ├── Validate input
@@ -211,11 +231,9 @@ Register
           │
           ├── Access Token
           └── Refresh Token
-```
 
-### Login Flow
+Login Flow
 
-```text
 Login
   │
   ├── Find user
@@ -226,11 +244,9 @@ Login
          │
          ├── Access Token
          └── Refresh Token
-```
 
-### Protected Request
+Protected Request
 
-```text
 Client
   │
   │ Authorization: Bearer <access_token>
@@ -243,90 +259,196 @@ Auth Middleware
           │
           ▼
       Controller
-```
 
----
+Phase 4 — Core Career Backend
 
-# Phase 4 — Core Career Backend
+Status: Completed
 
-**Status: Planned**
+Phase 4 focused on implementing the core career-management functionality after authentication.
 
-The next phase focuses on implementing the actual career-management features.
+The main functionality introduced in this phase is job application management.
 
-Planned modules include:
+Implemented
 
-### User Profile
+Create application
 
-* Personal information
-* Education
-* Skills
-* Work experience
-* Certifications
-* Professional summary
+Retrieve application list
 
-### Career Management
+Retrieve application by ID
 
-* Career goals
-* Target job roles
-* Career preferences
-* Progress tracking
+Update application
 
-### Job Applications
+Delete application
 
-* Create application
-* Update application
-* Delete application
-* Application status
-* Company information
-* Position information
-* Application timeline
+Application ownership
 
-Example statuses:
+Application validation
 
-```text
+Application status management
+
+Company information
+
+Position information
+
+Application timeline
+
+Application Status
+
 WISHLIST
 APPLIED
-SCREENING
+ASSESSMENT
 INTERVIEW
+TECHNICAL_TEST
 OFFER
 REJECTED
 WITHDRAWN
-```
 
-### Resume Management
+Application Architecture
 
-* Resume data
-* Resume versions
-* Resume sections
-* Resume history
+Application Route
+       │
+       ▼
+Application Controller
+       │
+       ▼
+Application Service
+       │
+       ▼
+Application Repository
+       │
+       ▼
+Prisma ORM
+       │
+       ▼
+PostgreSQL
 
----
+Phase 5 — Dashboard Logic
 
-# Phase 5 — Frontend
+Status: Completed
 
-**Status: Planned**
+Phase 5 focused on implementing the backend logic required by the Career SaaS dashboard.
 
-Build the user-facing web application.
+The dashboard transforms application data into useful summaries and statistics for the user.
 
-Planned features:
+Implemented
 
-* Authentication UI
-* Dashboard
-* Profile management
-* Career dashboard
-* Job application tracker
-* Resume management
-* Settings
+Total application summary
 
----
+Applications grouped by status
 
-# Phase 6 — Full-Stack Integration
+Recent applications
 
-**Status: Planned**
+Upcoming activities
 
-Connect the frontend to the backend REST API.
+Dashboard summary
 
-```text
+Dedicated dashboard repository
+
+Dashboard service
+
+Dashboard controller
+
+Dashboard routes
+
+Dashboard Architecture
+
+GET /api/dashboard
+        │
+        ▼
+Dashboard Route
+        │
+        ▼
+Dashboard Controller
+        │
+        ▼
+Dashboard Service
+        │
+        ▼
+Dashboard Repository
+        │
+        ▼
+Prisma ORM
+        │
+        ▼
+PostgreSQL
+
+Dashboard Data Flow
+
+Authenticated User
+        │
+        ▼
+GET /api/dashboard
+        │
+        ▼
+Authentication Middleware
+        │
+        └── req.user.id
+                │
+                ▼
+       Dashboard Controller
+                │
+                ▼
+         Dashboard Service
+                │
+        ┌───────┴────────┐
+        ▼                ▼
+Application          Application
+Repository             Queries
+        │                │
+        └───────┬────────┘
+                ▼
+              Prisma
+                │
+                ▼
+           PostgreSQL
+                │
+                ▼
+        Dashboard Response
+
+Phase 6 — Frontend
+
+Status: In Progress
+
+Phase 6 is the current development phase.
+
+This phase focuses on building the user-facing frontend application that consumes the backend REST API.
+
+Planned / In Progress
+
+Authentication UI
+
+Login page
+
+Registration page
+
+Dashboard UI
+
+Profile management
+
+Career dashboard
+
+Job application tracker
+
+Resume management
+
+Settings
+
+Responsive interface
+
+Reusable UI components
+
+Frontend state management
+
+API client integration
+
+The frontend will consume the REST API developed during the previous backend phases.
+
+Phase 7 — Full-Stack Integration
+
+Status: Planned
+
+Connect and integrate the completed frontend with the backend REST API.
+
 Frontend
    │
    │ HTTP / REST API
@@ -334,192 +456,278 @@ Frontend
 Express Backend
    │
    ▼
-Business Logic
+Controllers
+   │
+   ▼
+Services
+   │
+   ▼
+Repositories
    │
    ▼
 PostgreSQL
-```
 
-Focus areas:
+Focus Areas
 
-* API integration
-* Authentication state
-* Token handling
-* Protected routes
-* Error handling
-* Loading states
-* Form validation
+API integration
 
----
+Authentication state
 
-# Phase 7 — Testing & Deployment
+Token handling
 
-**Status: Planned**
+Protected routes
 
-Prepare the application for production.
+Error handling
 
-Planned work:
+Loading states
 
-* Unit testing
-* Integration testing
-* API testing
-* Authentication security review
-* Input validation
-* Rate limiting
-* Logging
-* Production environment configuration
-* Database migration strategy
-* Deployment
-* CI/CD
+Empty states
 
----
+Form validation
 
-# API
+Frontend/backend data synchronization
+
+Phase 8 — Testing, Security & Deployment
+
+Status: Planned
+
+Prepare the complete application for a production environment.
+
+Testing
+
+Unit testing
+
+Integration testing
+
+API testing
+
+Authentication testing
+
+Validation testing
+
+Error handling testing
+
+Security
+
+Authentication security review
+
+Authorization checks
+
+Input validation
+
+Rate limiting
+
+Secure token handling
+
+CORS configuration
+
+Security headers
+
+Environment secret management
+
+Deployment
+
+Production environment configuration
+
+Database migration strategy
+
+Backend deployment
+
+Frontend deployment
+
+CI/CD
+
+Logging
+
+Monitoring
+
+API
 
 The backend exposes a REST API.
 
 Example authentication endpoints:
 
-```text
 POST   /api/auth/register
 POST   /api/auth/login
 POST   /api/auth/refresh
 POST   /api/auth/logout
 GET    /api/auth/profile
-```
 
 Protected endpoints require:
 
-```http
 Authorization: Bearer <access_token>
-```
 
 Additional endpoints will be introduced as the Career SaaS modules are implemented.
 
----
+Environment Variables
 
-# Environment Variables
-
-Create a `.env` file in the backend directory.
+Create a .env file in the backend directory.
 
 Example:
 
-```env
 DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/career_saas"
 
 ACCESS_TOKEN_SECRET="your-access-token-secret"
 REFRESH_TOKEN_SECRET="your-refresh-token-secret"
 
 PORT=3000
-```
 
-Never commit `.env` or production secrets to the repository.
+Never commit .env or production secrets to the repository.
 
----
+Getting Started
 
-# Getting Started
+1. Clone the repository
 
-## 1. Clone the repository
-
-```bash
 git clone <repository-url>
 cd career-saas/backend
-```
 
-## 2. Install dependencies
+2. Install dependencies
 
-```bash
 npm install
-```
 
-## 3. Configure environment variables
+3. Configure environment variables
 
 Create:
 
-```text
 .env
-```
 
 and configure the required environment variables.
 
-## 4. Generate Prisma Client
+4. Generate Prisma Client
 
-```bash
 npx prisma generate
-```
 
-## 5. Run database migrations
+5. Run database migrations
 
-```bash
 npx prisma migrate dev
-```
 
-## 6. Start development server
+6. Start development server
 
-```bash
 npm run dev
-```
 
 The API will be available at:
 
-```text
 http://localhost:3000
-```
 
----
-
-# Security
+Security
 
 The project applies several security practices:
 
-* Passwords are never stored in plaintext.
-* Passwords are hashed before being stored.
-* Access tokens are short-lived.
-* Refresh tokens are separately managed.
-* Refresh tokens are stored as hashes in the database.
-* Protected endpoints require authentication.
-* Authentication errors avoid revealing whether an email exists.
-* Environment secrets are stored outside the source code.
+Passwords are never stored in plaintext.
 
----
+Passwords are hashed before being stored.
 
-# Development Principles
+Access tokens are short-lived.
+
+Refresh tokens are separately managed.
+
+Refresh tokens are stored as hashes in the database.
+
+Protected endpoints require authentication.
+
+Authentication errors avoid revealing whether an email exists.
+
+Environment secrets are stored outside the source code.
+
+Development Principles
 
 The project is developed with an emphasis on:
 
-* Separation of concerns
-* Clean architecture
-* Type safety
-* Secure authentication
-* Maintainable code
-* Reusable services
-* Database abstraction
-* Incremental development
-* Production-oriented practices
+Separation of concerns
 
----
+Clean architecture
 
-# Roadmap
+Type safety
 
-```text
+Secure authentication
+
+Maintainable code
+
+Reusable services
+
+Database abstraction
+
+Incremental development
+
+Production-oriented practices
+
+Roadmap
+
 Phase 1  ████████████████████  Completed
 Phase 2  ████████████████████  Completed
 Phase 3  ████████████████████  Completed
-Phase 4  ░░░░░░░░░░░░░░░░░░░░  Next
-Phase 5  ░░░░░░░░░░░░░░░░░░░░  Planned
-Phase 6  ░░░░░░░░░░░░░░░░░░░░  Planned
+Phase 4  ████████████████████  Completed
+Phase 5  ████████████████████  Completed
+Phase 6  ██████████░░░░░░░░░░  In Progress
 Phase 7  ░░░░░░░░░░░░░░░░░░░░  Planned
-```
+Phase 8  ░░░░░░░░░░░░░░░░░░░░  Planned
+Phase 9  ░░░░░░░░░░░░░░░░░░░░  Planned
+Phase 10  ░░░░░░░░░░░░░░░░░░░░  Planned
+Phase 11  ░░░░░░░░░░░░░░░░░░░░  Planned
+Phase 12  ░░░░░░░░░░░░░░░░░░░░  Planned
+Phase 13  ░░░░░░░░░░░░░░░░░░░░  Planned
+Phase 14  ░░░░░░░░░░░░░░░░░░░░  Planned
 
----
+Phase
 
-# Project Goal
+Description
+
+Status
+
+Phase 1
+
+Project Foundation
+
+Completed
+
+Phase 2
+
+Database & Repository Layer
+
+Completed
+
+Phase 3
+
+Authentication & Authorization
+
+Completed
+
+Phase 4
+
+Core Career Backend
+
+Completed
+
+Phase 5
+
+Dashboard Logic
+
+Completed
+
+Phase 6
+
+Frontend
+
+In Progress
+
+Phase 7
+
+Full-Stack Integration
+
+Planned
+
+Phase 8
+
+Testing, Security & Deployment
+
+Planned
+
+Project Goal
 
 The long-term goal of Career SaaS is to provide a centralized platform where users can manage and organize their professional development.
 
 Instead of separating career information across resumes, spreadsheets, job boards, and notes, the platform aims to provide a single system for managing:
 
-```text
 Profile
    │
    ├── Education
@@ -538,10 +746,36 @@ Interviews
          │
          ▼
 Offers / Career Progress
-```
 
----
+Current Development Status
 
-## License
+Career SaaS has completed the initial backend foundation, database and repository layer, authentication and authorization, core career backend, and dashboard logic.
+
+The current development focus is Phase 6 — Frontend.
+
+Foundation
+    │
+    ▼
+Database & Repository
+    │
+    ▼
+Authentication & Authorization
+    │
+    ▼
+Core Career Backend
+    │
+    ▼
+Dashboard Logic
+    │
+    ▼
+Frontend                  ← CURRENT
+    │
+    ▼
+Full-Stack Integration
+    │
+    ▼
+Testing, Security & Deployment
+
+License
 
 This project is currently developed as a personal software engineering project.
