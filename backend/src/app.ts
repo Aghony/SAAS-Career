@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.routes.js";
 import { errorMiddleware } from "./middlewares/error.middleware.js";
+import dashboardRoutes from "./routes/dasboard.routes.js"
 
 const app = express();
 
@@ -15,6 +16,8 @@ app.get("/api/health", (_req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+
+app.use("/api/dashboard", dashboardRoutes);
 
 app.use(errorMiddleware);
 
