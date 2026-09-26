@@ -1,445 +1,710 @@
-Saya ingin membangun sebuah **Career Management SaaS** yang awalnya digunakan untuk kebutuhan pribadi, tetapi arsitekturnya harus memungkinkan untuk dikembangkan menjadi SaaS multi-user di masa depan.
+# Career SaaS
 
-## Tujuan Produk
+A full-stack SaaS platform designed to help users manage their career journey, including professional profiles, career planning, job applications, resumes, and career-related data in one centralized platform.
 
-Aplikasi ini berfungsi sebagai **Personal Career Management System** untuk membantu pengguna mengelola perjalanan karier secara terstruktur.
+> **Status:** In Development
+> **Current Phase:** Phase 6 — Frontend
 
-Fokus utama MVP adalah:
+---
 
-1. Job application tracking
-2. Career dashboard
-3. Resume management
-4. Project/portfolio management
-5. Skill tracking
-6. Interview tracking
-7. Career analytics
+## Overview
 
-Jangan langsung membuat semua fitur sekaligus. Bangun sistem secara bertahap dengan fondasi yang rapi dan mudah dikembangkan.
+Career SaaS is a personal career management platform built with a modern backend architecture and designed to be extended into a full-stack SaaS application.
+
+The project focuses on building a production-oriented system with:
+
+* Secure authentication
+* User profile management
+* Career planning
+* Job application tracking
+* Resume management
+* Structured backend architecture
+* Scalable database design
+* RESTful API
+
+The project is being developed incrementally, starting from the backend foundation before moving into the frontend and full-stack integration.
+
+---
 
 ## Tech Stack
 
-Gunakan:
-
-### Frontend
-
-* React
-* TypeScript
-* Vite
-* React Router
-* Tailwind CSS
-
 ### Backend
 
-* Node.js
-* TypeScript
-* Express.js
-* REST API
+* **Node.js**
+* **TypeScript**
+* **Express.js**
+* **Prisma ORM**
+* **PostgreSQL**
+* **JWT**
+* **bcrypt**
+* **ES Modules**
 
-### Database
+### Development Tools
 
-* PostgreSQL
-* Prisma ORM
+* **Git**
+* **GitHub**
+* **npm**
+* **VS Code**
 
-### Authentication
+---
 
-* Email + password
+## Architecture
+
+The backend follows a layered architecture to keep business logic separated from HTTP handling and database access.
+
+```text
+Client
+  │
+  ▼
+Routes
+  │
+  ▼
+Controllers
+  │
+  ▼
+Services
+  │
+  ▼
+Repositories
+  │
+  ▼
+Prisma ORM
+  │
+  ▼
+PostgreSQL
+```
+
+### Layer Responsibilities
+
+**Routes**
+
+Defines API endpoints and connects them to controllers and middleware.
+
+**Controllers**
+
+Handles HTTP requests and responses.
+
+**Services**
+
+Contains business logic and application rules.
+
+**Repositories**
+
+Handles database access and abstracts Prisma operations from the service layer.
+
+**Middleware**
+
+Handles authentication, validation, error handling, and other request-level processing.
+
+---
+
+## Project Structure
+
+```text
+backend/
+├── prisma/
+│   └── schema.prisma
+│
+├── src/
+│   ├── controllers/
+│   ├── middlewares/
+│   ├── repositories/
+│   ├── routes/
+│   ├── services/
+│   ├── types/
+│   ├── utils/
+│   ├── validators/
+│   └── app.ts
+│
+├── .env
+├── package.json
+├── tsconfig.json
+└── README.md
+```
+
+---
+
+# Development Phases
+
+## Phase 1 — Project Foundation
+
+**Status: Completed**
+
+Initial backend setup and project architecture.
+
+Goals:
+
+* Initialize Node.js project
+* Configure TypeScript
+* Configure Express
+* Configure environment variables
+* Establish project structure
+* Configure development tooling
+* Establish backend architecture
+
+---
+
+## Phase 2 — Database & Repository Layer
+
+**Status: Completed**
+
+Database infrastructure and data-access layer.
+
+Goals:
+
+* Configure PostgreSQL
+* Configure Prisma
+* Design database schema
+* Generate Prisma client
+* Create repositories
+* Separate database logic from business logic
+
+Architecture:
+
+```text
+Service
+   ↓
+Repository
+   ↓
+Prisma
+   ↓
+PostgreSQL
+```
+
+---
+
+## Phase 3 — Authentication & Authorization
+
+**Status: Completed**
+
+Implement secure user authentication and session management.
+
+### Implemented
+
+* User registration
+* User login
 * Password hashing
-* JWT atau secure session
+* Password verification
+* Access tokens
+* Refresh tokens
+* Refresh token rotation
+* Refresh token hashing
+* Logout
+* Authentication middleware
 * Protected routes
+* User profile retrieval
+* Express `Request.user` type augmentation
+* Centralized application errors
+
+### Authentication Flow
+
+```text
+Register
+   │
+   ├── Validate input
+   │
+   ├── Hash password
+   │
+   ├── Create user
+   │
+   └── Issue tokens
+          │
+          ├── Access Token
+          └── Refresh Token
+```
+
+### Login Flow
+
+```text
+Login
+  │
+  ├── Find user
+  │
+  ├── Verify password
+  │
+  └── Issue tokens
+         │
+         ├── Access Token
+         └── Refresh Token
+```
+
+### Protected Request
+
+```text
+Client
+  │
+  │ Authorization: Bearer <access_token>
+  ▼
+Auth Middleware
+  │
+  ├── Verify JWT
+  │
+  └── Attach user ID
+          │
+          ▼
+      Controller
+```
+
+---
+
+# Phase 4 — Core Career Backend
+
+**Status: Completed**
+
+Phase 4 focused on implementing the core career-management functionality after authentication.
+
+The main functionality introduced in this phase is job application management.
+
+### Implemented
+
+- Create application
+- Retrieve application list
+- Retrieve application by ID
+- Update application
+- Delete application
+- Application ownership
+- Application validation
+- Application status management
+- Company information
+- Position information
+- Application timeline
+
+### Application Status
+
+```text
+WISHLIST
+APPLIED
+ASSESSMENT
+INTERVIEW
+TECHNICAL_TEST
+OFFER
+REJECTED
+WITHDRAWN
+```
+
+### Application Architecture
+
+```text
+Application Route
+       │
+       ▼
+Application Controller
+       │
+       ▼
+Application Service
+       │
+       ▼
+Application Repository
+       │
+       ▼
+Prisma ORM
+       │
+       ▼
+PostgreSQL
+```
 
-### Development
+---
 
-* Git
-* Docker
-* ESLint
-* Prettier
+# Phase 5 — Dashboard Logic
 
-## Prinsip Pengembangan
+**Status: Completed**
 
-Saya ingin memahami dan membangun sistem ini dari fundamental.
+Phase 5 focused on implementing the backend logic required by the Career SaaS dashboard.
 
-Jangan menggunakan pendekatan "vibe coding".
+The dashboard transforms application data into useful summaries and statistics for the user.
 
-Untuk setiap bagian yang dibuat:
+### Implemented
 
-1. Jelaskan tujuan bagian tersebut.
-2. Jelaskan struktur folder.
-3. Jelaskan alasan pemilihan teknologi.
-4. Jelaskan database schema.
-5. Jelaskan API endpoint.
-6. Jelaskan alur data.
-7. Berikan kode secara bertahap.
-8. Jelaskan kode yang dibuat.
-9. Berikan cara menjalankan dan menguji fitur tersebut.
-10. Jangan membuat kode yang belum diperlukan.
+- Total application summary
+- Applications grouped by status
+- Recent applications
+- Upcoming activities
+- Dashboard summary
+- Dedicated dashboard repository
+- Dashboard service
+- Dashboard controller
+- Dashboard routes
 
-Jangan membuat seluruh aplikasi sekaligus.
+### Dashboard Architecture
 
-Prioritaskan:
-
-* clean architecture
-* separation of concerns
-* maintainability
-* security
-* validation
-* error handling
-* scalability
-
-## Arsitektur
-
-Gunakan pemisahan:
-
-Frontend:
-
-* pages
-* components
-* layouts
-* hooks
-* services
-* types
-
-Backend:
-
-src/
-├── config/
-├── controllers/
-├── middlewares/
-├── routes/
-├── services/
-├── repositories/
-├── validators/
-├── utils/
-├── types/
-└── app.ts
-
-Pisahkan business logic dari controller.
-
-Controller hanya menangani request/response.
-
-Service menangani business logic.
-
-Repository menangani interaksi database.
-
-## MVP V1
-
-Mulai hanya dengan:
-
-### Authentication
-
-User dapat:
-
-* register
-* login
-* logout
-* melihat profile
-
-User memiliki:
-
-* id
-* name
-* email
-* passwordHash
-* createdAt
-* updatedAt
-
-### Job Applications
-
-User dapat membuat application dengan:
-
-* company
-* position
-* jobUrl
-* location
-* employmentType
-* salaryMin
-* salaryMax
-* appliedAt
-* deadline
-* status
-* notes
-* createdAt
-* updatedAt
-
-Status:
-
-* wishlist
-* applied
-* assessment
-* interview
-* technical_test
-* offer
-* rejected
-* withdrawn
-
-Setiap application harus dimiliki oleh user tertentu.
-
-User tidak boleh dapat mengakses application milik user lain.
-
-## Dashboard
-
-Dashboard menampilkan:
-
-* total applications
-* applications berdasarkan status
-* upcoming deadlines
-* upcoming interviews
-* recent applications
-
-Contoh:
-
-Applications: 24
-Interviews: 7
-Technical Tests: 5
-Offers: 2
-
-Gunakan data database sebenarnya, bukan hardcoded data.
-
-## UI
-
-Buat interface yang:
-
-* modern
-* minimal
-* professional
-* responsive
-* mudah digunakan
-* cocok untuk career management
-
-Layout:
-
-Sidebar:
-
-* Dashboard
-* Applications
-* Resume
-* Projects
-* Skills
-* Interviews
-* Analytics
-* Settings
-
-Untuk MVP, halaman yang aktif terlebih dahulu:
-
-Dashboard
-Applications
-Settings
-
-Halaman lainnya boleh berupa placeholder.
-
-## Job Application UI
-
-Gunakan layout Kanban untuk status application:
-
-Wishlist
-Applied
-Assessment
-Interview
-Technical Test
-Offer
-Rejected
-
-Selain Kanban, sediakan list/table view.
-
-User dapat:
-
-* create application
-* edit application
-* delete application
-* melihat detail application
-* mengubah status
-
-## Database
-
-Buat relational database yang normal dan memiliki foreign key yang jelas.
-
-Minimal model:
-
-User
-Application
-
-Siapkan desain agar nantinya mudah ditambahkan:
-
-Resume
-Project
-Skill
-Interview
-CareerEvent
-
-Gunakan UUID atau ID yang aman sebagai primary key.
-
-Tambahkan:
-
-* timestamps
-* indexes yang relevan
-* unique constraints jika diperlukan
-* foreign keys
-* cascade behavior yang aman
-
-## API
-
-Gunakan REST API.
-
-Contoh:
-
-POST /api/auth/register
-POST /api/auth/login
-POST /api/auth/logout
-GET /api/auth/me
-
-GET /api/applications
-GET /api/applications/:id
-POST /api/applications
-PATCH /api/applications/:id
-DELETE /api/applications/:id
-
+```text
 GET /api/dashboard
+        │
+        ▼
+Dashboard Route
+        │
+        ▼
+Dashboard Controller
+        │
+        ▼
+Dashboard Service
+        │
+        ▼
+Dashboard Repository
+        │
+        ▼
+Prisma ORM
+        │
+        ▼
+PostgreSQL
+```
 
-Semua endpoint yang membutuhkan authentication harus menggunakan authentication middleware.
+### Dashboard Data Flow
 
-Validasi request menggunakan schema validation.
+```text
+Authenticated User
+        │
+        ▼
+GET /api/dashboard
+        │
+        ▼
+Authentication Middleware
+        │
+        └── req.user.id
+                │
+                ▼
+       Dashboard Controller
+                │
+                ▼
+         Dashboard Service
+                │
+        ┌───────┴────────┐
+        ▼                ▼
+Application          Application
+Repository             Queries
+        │                │
+        └───────┬────────┘
+                ▼
+              Prisma
+                │
+                ▼
+           PostgreSQL
+                │
+                ▼
+        Dashboard Response
+```
 
-Berikan HTTP status code yang benar dan response format yang konsisten.
+---
 
-Contoh:
+# Phase 6 — Frontend
 
-{
-"success": true,
-"data": {}
-}
+**Status: In Progress**
 
-Untuk error:
+Phase 6 is the current development phase.
 
-{
-"success": false,
-"error": {
-"code": "VALIDATION_ERROR",
-"message": "Invalid request"
-}
-}
+This phase focuses on building the user-facing frontend application that consumes the backend REST API.
 
-## Security
+### Planned / In Progress
 
-Perhatikan:
+- Authentication UI
+- Login page
+- Registration page
+- Dashboard UI
+- Profile management
+- Career dashboard
+- Job application tracker
+- Resume management
+- Settings
+- Responsive interface
+- Reusable UI components
+- Frontend state management
+- API client integration
 
-* password hashing
-* authentication
-* authorization
-* input validation
-* SQL injection prevention
-* CORS
-* rate limiting
-* secure cookies jika menggunakan session
-* environment variables
-* jangan menyimpan secret di repository
+The frontend will consume the REST API developed during the previous backend phases.
 
-Gunakan `.env` dan sediakan `.env.example`.
+---
 
-## Testing
+# Phase 7 — Full-Stack Integration
 
-Setelah setiap fitur selesai, buat testing yang relevan.
+**Status: Planned**
 
-Minimal:
+Connect and integrate the completed frontend with the backend REST API.
 
-Backend:
+```text
+Frontend
+   │
+   │ HTTP / REST API
+   ▼
+Express Backend
+   │
+   ▼
+Controllers
+   │
+   ▼
+Services
+   │
+   ▼
+Repositories
+   │
+   ▼
+PostgreSQL
+```
 
-* authentication test
-* application CRUD test
-* authorization test
-* validation test
+### Focus Areas
 
-Pastikan user A tidak dapat membaca atau mengubah application milik user B.
+- API integration
+- Authentication state
+- Token handling
+- Protected routes
+- Error handling
+- Loading states
+- Empty states
+- Form validation
+- Frontend/backend data synchronization
 
-## Docker
+---
 
-Siapkan Docker Compose untuk:
+# Phase 8 — Testing, Security & Deployment
 
-* PostgreSQL
-* Backend
-* Frontend jika diperlukan
+**Status: Planned**
 
-Development environment harus dapat dijalankan dengan mudah.
+Prepare the complete application for a production environment.
 
-## Development Roadmap
+### Testing
 
-Ikuti urutan:
+- Unit testing
+- Integration testing
+- API testing
+- Authentication testing
+- Validation testing
+- Error handling testing
 
-Phase 1
-Project setup
+### Security
 
-Phase 2
-Database + Prisma
+- Authentication security review
+- Authorization checks
+- Input validation
+- Rate limiting
+- Secure token handling
+- CORS configuration
+- Security headers
+- Environment secret management
 
-Phase 3
-Authentication
+### Deployment
 
-Phase 4
-Application CRUD
+- Production environment configuration
+- Database migration strategy
+- Backend deployment
+- Frontend deployment
+- CI/CD
+- Logging
+- Monitoring
 
-Phase 5
-Dashboard
+---
 
-Phase 6
-Frontend integration
+# API
 
-Phase 7
-Testing
+The backend exposes a REST API.
 
-Phase 8
-Docker
+Example authentication endpoints:
 
-Phase 9
-Resume management
+```text
+POST   /api/auth/register
+POST   /api/auth/login
+POST   /api/auth/refresh
+POST   /api/auth/logout
+GET    /api/auth/profile
+```
 
-Phase 10
-Project/portfolio management
+Protected endpoints require:
 
-Phase 11
-Skill tracking
+```http
+Authorization: Bearer <access_token>
+```
 
-Phase 12
-Interview tracking
+Additional endpoints will be introduced as the Career SaaS modules are implemented.
 
-Phase 13
-Career analytics
+---
 
-Phase 14
-AI Career Assistant
+# Environment Variables
 
-## AI Feature — Future
+Create a `.env` file in the backend directory.
 
-Jangan implementasikan AI pada MVP.
+Example:
 
-Pada tahap selanjutnya, AI dapat digunakan untuk:
+```env
+DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/career_saas"
 
-* menganalisis job description
-* mengidentifikasi skill yang dibutuhkan
-* membandingkan skill user dengan job requirement
-* membantu memperbaiki resume
-* menghasilkan interview questions
-* membuat interview preparation plan
-* memberikan feedback terhadap jawaban interview
+ACCESS_TOKEN_SECRET="your-access-token-secret"
+REFRESH_TOKEN_SECRET="your-refresh-token-secret"
 
-AI harus menjadi fitur tambahan, bukan fondasi utama aplikasi.
+PORT=3000
+```
 
-## Cara Kerja yang Saya Inginkan
+Never commit `.env` or production secrets to the repository.
 
-Jangan langsung memberikan seluruh source code.
+---
 
-Mulai dari:
+# Getting Started
 
-1. Analisis requirement
-2. Tentukan MVP
-3. Buat architecture
-4. Buat folder structure
-5. Setup project
-6. Setup PostgreSQL
-7. Setup Prisma
-8. Buat User model
-9. Migration
-10. Baru lanjut authentication
+## 1. Clone the repository
 
-Setelah setiap tahap, jelaskan apa yang terjadi dan bagaimana saya dapat menjalankan serta menguji hasilnya.
+```bash
+git clone <repository-url>
+cd career-saas/backend
+```
 
-Jika terdapat beberapa pilihan implementasi, jelaskan trade-off-nya terlebih dahulu dan pilih satu pendekatan yang paling sesuai untuk project ini.
+## 2. Install dependencies
 
-Prioritaskan pembelajaran, kualitas arsitektur, dan pemahaman saya terhadap kode daripada menghasilkan kode sebanyak mungkin.
+```bash
+npm install
+```
+
+## 3. Configure environment variables
+
+Create:
+
+```text
+.env
+```
+
+and configure the required environment variables.
+
+## 4. Generate Prisma Client
+
+```bash
+npx prisma generate
+```
+
+## 5. Run database migrations
+
+```bash
+npx prisma migrate dev
+```
+
+## 6. Start development server
+
+```bash
+npm run dev
+```
+
+The API will be available at:
+
+```text
+http://localhost:3000
+```
+
+---
+
+# Security
+
+The project applies several security practices:
+
+* Passwords are never stored in plaintext.
+* Passwords are hashed before being stored.
+* Access tokens are short-lived.
+* Refresh tokens are separately managed.
+* Refresh tokens are stored as hashes in the database.
+* Protected endpoints require authentication.
+* Authentication errors avoid revealing whether an email exists.
+* Environment secrets are stored outside the source code.
+
+---
+
+# Development Principles
+
+The project is developed with an emphasis on:
+
+* Separation of concerns
+* Clean architecture
+* Type safety
+* Secure authentication
+* Maintainable code
+* Reusable services
+* Database abstraction
+* Incremental development
+* Production-oriented practices
+
+---
+
+# Roadmap
+
+```text
+Phase 1  ████████████████████  Completed
+Phase 2  ████████████████████  Completed
+Phase 3  ████████████████████  Completed
+Phase 4  ████████████████████  Completed
+Phase 5  ████████████████████  Completed
+Phase 6  ██████████░░░░░░░░░░  In Progress
+Phase 7  ░░░░░░░░░░░░░░░░░░░░  Planned
+Phase 8  ░░░░░░░░░░░░░░░░░░░░  Planned
+```
+
+| Phase | Description | Status |
+|---|---|---|
+| Phase 1 | Project Foundation | Completed |
+| Phase 2 | Database & Repository Layer | Completed |
+| Phase 3 | Authentication & Authorization | Completed |
+| Phase 4 | Core Career Backend | Completed |
+| Phase 5 | Dashboard Logic | Completed |
+| Phase 6 | Frontend | In Progress |
+| Phase 7 | Full-Stack Integration | Planned |
+| Phase 8 | Testing, Security & Deployment | Planned |
+
+---
+
+# Project Goal
+
+The long-term goal of Career SaaS is to provide a centralized platform where users can manage and organize their professional development.
+
+Instead of separating career information across resumes, spreadsheets, job boards, and notes, the platform aims to provide a single system for managing:
+
+```text
+Profile
+   │
+   ├── Education
+   ├── Skills
+   ├── Experience
+   └── Certifications
+         │
+         ▼
+Career Goals
+         │
+         ▼
+Job Applications
+         │
+         ▼
+Interviews
+         │
+         ▼
+Offers / Career Progress
+```
+
+---
+
+# Current Development Status
+
+Career SaaS has completed the initial backend foundation, database and repository layer, authentication and authorization, core career backend, and dashboard logic.
+
+The current development focus is **Phase 6 — Frontend**.
+
+```text
+Foundation
+    │
+    ▼
+Database & Repository
+    │
+    ▼
+Authentication & Authorization
+    │
+    ▼
+Core Career Backend
+    │
+    ▼
+Dashboard Logic
+    │
+    ▼
+Frontend                  ← CURRENT
+    │
+    ▼
+Full-Stack Integration
+    │
+    ▼
+Testing, Security & Deployment
+```
+
+---
+
+## License
+
+This project is currently developed as a personal software engineering project.
