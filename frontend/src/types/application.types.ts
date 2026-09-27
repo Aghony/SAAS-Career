@@ -51,7 +51,7 @@ export interface ApplicationInput {
   notes?: string;
 }
 
-export const APPLICATION_STATUES: ApplicationStatus[] = [
+export const APPLICATION_STATUSES: ApplicationStatus[] = [
   "wishlist",
   "applied",
   "assessment",
