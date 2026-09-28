@@ -19,7 +19,7 @@ export function DashboardLayout() {
     <div className="flex h-screen bg-gray-50">
       <aside className="flex w-60 shrink-0 flex-col border-r border-gray-200 bg-white">
         <div className="px-6 py-5 text-lg font-semibold text-gray-900">
-          Career SaaS
+          Careerly
         </div>
         <nav className="flex-1 space-y-1 px-3">
           {NAV_ITEMS.map((item) => (
