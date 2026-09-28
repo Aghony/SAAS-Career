@@ -29,21 +29,21 @@ function buildStatusBreakdown(grouped: { status: ApplicationStatus; _count: { _a
 
 export const dashboardService = {
   async getSummary(userId: string) {
-    const [total, grouped, upcomingDeadlines, upcomingInterviews, recentApplications] =
-    await Promise.all([
-      dashboardRepository.countTotal(userId),
-      dashboardRepository.countByStatus(userId),
-      dashboardRepository.upcomingDeadlines(userId, UPCOMING_LIMIT),
-      dashboardRepository.upcomingInterviews(userId, UPCOMING_LIMIT),
-      dashboardRepository.recentApplications(userId, RECENT_LIMIT),
-    ]);
+    const [totals, grouped, upcomingDeadlines, upcomingInterviews, recentApplications] =
+      await Promise.all([
+        dashboardRepository.countTotal(userId),
+        dashboardRepository.countByStatus(userId),
+        dashboardRepository.upcomingDeadlines(userId, UPCOMING_LIMIT),
+        dashboardRepository.upcomingInterviews(userId, UPCOMING_LIMIT),
+        dashboardRepository.recentApplications(userId, RECENT_LIMIT),
+      ]);
 
     return {
-        totalApplication: total,
-        statusBreakdown: buildStatusBreakdown(grouped),
-        upcomingDeadlines,
-        upcomingInterviews,
-        recentApplications,
-    }
+      totalApplications: totals,
+      statusBreakdown: buildStatusBreakdown(grouped),
+      upcomingDeadlines,
+      upcomingInterviews,
+      recentApplications,
+    };
   },
 };

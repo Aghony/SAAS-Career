@@ -5,6 +5,7 @@ export const authRateLimiter = rateLimit({
   limit: 10,
   standardHeaders: true,
   legacyHeaders: false,
+  skip: () => process.env.NODE_ENV === "test",
   message: {
     success: false,
     error: { code: "TOO_MANY_REQUESTS", message: "Terlalu banyak percobaan, coba lagi nanti" },

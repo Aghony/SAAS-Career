@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:migrate": "dotenv -e .env.test -- prisma migrate deploy"
   },
   "keywords": [],
   "author": "",
@@ -14,13 +17,17 @@
   "description": "",
   "dependencies": {
     "@prisma/client": "^6.19.3",
+    "@types/supertest": "^7.2.1",
     "argon2": "^0.45.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
     "dotenv": "^18.0.2",
+    "dotenv-cli": "^11.0.0",
     "express": "^5.2.1",
     "express-rate-limit": "^8.7.0",
     "jsonwebtoken": "^9.0.3",
+    "supertest": "^7.3.0",
+    "vitest": "^4.1.11",
     "zod": "^4.6.5"
   },
   "devDependencies": {
