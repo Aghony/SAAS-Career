@@ -11,6 +11,7 @@ COPY package*.json ./
 FROM base AS development
 RUN npm install
 COPY . .
+RUN npx prisma generate
 EXPOSE 4000
 CMD ["npm", "run", "dev"]
 

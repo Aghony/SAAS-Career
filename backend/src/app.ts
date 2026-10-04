@@ -5,7 +5,7 @@ import authRoutes from "./routes/auth.routes.js";
 import { errorMiddleware } from "./middlewares/error.middleware.js";
 import dashboardRoutes from "./routes/dasboard.routes.js";
 import applicationRoutes from "./routes/application.routes.js";
-
+import resumeRoutes from "./routes/resume.routes.js";
 const app = express();
 
 app.use(cors({ origin: process.env.CORS_ORIGIN, credentials: true }));
@@ -18,6 +18,7 @@ app.get("/api/health", (_req, res) => {
 app.use("/api/applications", applicationRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/resumes", resumeRoutes);
 
 app.use(errorMiddleware);
 

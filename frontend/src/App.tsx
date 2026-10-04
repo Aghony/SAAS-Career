@@ -8,6 +8,7 @@ import { DashboardPage } from "./pages/DashboardPage";
 import { ApplicationsPage } from "./pages/ApplicationsPage";
 import { SettingsPage } from "./pages/SettingsPage";
 import { PlaceholderPage } from "./pages/PlaceholderPage";
+import { ResumePage } from "./pages/ResumePage";
 
 function App() {
   return (
@@ -21,10 +22,7 @@ function App() {
             <Route element={<DashboardLayout />}>
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/applications" element={<ApplicationsPage />} />
-              <Route
-                path="/resume"
-                element={<PlaceholderPage title="Resume" />}
-              />
+              <Route path="/resume" element={<ResumePage />} />
               <Route
                 path="/projects"
                 element={<PlaceholderPage title="Projects" />}
