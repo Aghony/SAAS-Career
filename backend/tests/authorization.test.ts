@@ -83,4 +83,17 @@ describe("Authorization - Isolasi Antar User", () => {
     expect(res.status).toBe(200);
     expect(res.body.data.totalApplications).toBe(0);
   });
+
+  it("User B tidak bisa melihat project milik User A", async () => {
+    const createRes = await request(app)
+      .post("/api/projects")
+      .set("Authorization", `Bearer ${tokenA}`)
+      .send({ title: "Project Rahasia A" });
+
+    const res = await request(app)
+      .get(`/api/projects/${createRes.body.data.project.id}`)
+      .set("Authorization", `Bearer ${tokenB}`);
+
+    expect(res.status).toBe(404);
+  });
 });

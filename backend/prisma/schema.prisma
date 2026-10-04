@@ -15,6 +15,7 @@ model User {
   refreshTokenHash String?
   applications     Application[]
   resumes          Resume[]
+  projects         Project[]
   createdAt        DateTime      @default(now())
   updatedAt        DateTime      @updatedAt
 }
@@ -71,6 +72,26 @@ model Resume {
   isPrimary Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
+  
   @@index([userId])
+}
+
+model Project {
+  id              String    @id @default(uuid(7))
+  userId          String 
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title           String 
+  description     String?   @db.Text
+  role            String? 
+  techStack       String[]
+  projectUrl      String?
+  repoUrl         String?
+  thumbnailUrl    String?
+  startDate       DateTime?
+  endDate         DateTime?
+  isOngoing       Boolean   @default(false)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+ @@index([userId])
 }
