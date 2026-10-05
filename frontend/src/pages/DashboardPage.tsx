@@ -4,6 +4,7 @@ import {
   type DashboardSummary,
 } from "../services/dashboardService";
 import { STATUS_LABELS } from "../types/application.types";
+import { TYPE_LABELS } from "../types/interview.types";
 
 export function DashboardPage() {
   const [summary, setSummary] = useState<DashboardSummary | null>(null);
@@ -43,7 +44,7 @@ export function DashboardPage() {
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <section className="rounded-lg border border-gray-200 bg-white p-5">
           <h2 className="mb-3 font-medium text-gray-900">Upcoming Deadlines</h2>
           {summary.upcomingDeadlines.length === 0 && (
@@ -64,6 +65,36 @@ export function DashboardPage() {
             ))}
           </ul>
         </section>
+
+        <section className="rounded-lg border border-gray-200 bg-white p-5">
+          <h2 className="mb-3 font-medium text-gray-900">
+            Upcoming Interviews
+          </h2>
+          {summary.upcomingInterviews.length === 0 && (
+            <p className="text-sm text-gray-400">
+              Tidak ada interview terjadwal.
+            </p>
+          )}
+          <ul className="space-y-2">
+            {summary.upcomingInterviews.map((iv) => (
+              <li key={iv.id} className="text-sm">
+                <div className="flex justify-between">
+                  <span className="text-gray-700">
+                    {iv.application.company}
+                  </span>
+                  <span className="text-gray-400">{TYPE_LABELS[iv.type]}</span>
+                </div>
+                <span className="text-xs text-gray-400">
+                  {new Date(iv.scheduledAt).toLocaleString("id-ID", {
+                    dateStyle: "medium",
+                    timeStyle: "short",
+                  })}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
         <section className="rounded-lg border border-gray-200 bg-white p-5">
           <h2 className="mb-3 font-medium text-gray-900">
             Recent Applications

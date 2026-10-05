@@ -11,6 +11,7 @@ import { PlaceholderPage } from "./pages/PlaceholderPage";
 import { ResumePage } from "./pages/ResumePage";
 import { ProjectsPage } from "./pages/ProjectsPage";
 import { SkillsPage } from "./pages/SkillsPage";
+import { InterviewsPage } from "./pages/InterviewsPage";
 
 function App() {
   return (
@@ -27,10 +28,7 @@ function App() {
               <Route path="/resume" element={<ResumePage />} />
               <Route path="/projects" element={<ProjectsPage />} />
               <Route path="/skills" element={<SkillsPage />} />
-              <Route
-                path="/interviews"
-                element={<PlaceholderPage title="Interviews" />}
-              />
+              <Route path="/interviews" element={<InterviewsPage />} />
               <Route
                 path="/analytics"
                 element={<PlaceholderPage title="Analytics" />}

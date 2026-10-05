@@ -22,17 +22,14 @@ export const dashboardRepository = {
   },
 
   upcomingInterviews(userId: string, take: number) {
-    return prisma.application.findMany({
-      where: {
-        userId,
-        status: { in: ["interview", "technical_test"] },
-        deadline: { gte: new Date() },
-      },
-      orderBy: { deadline: "asc" },
+    return prisma.interview.findMany({
+      where: { userId, status: "scheduled", scheduledAt: { gte: new Date() } },
+      orderBy: { scheduledAt: "asc" },
       take,
+      include: { application: { select: { company: true, position: true } } },
     });
   },
-
+  
   recentApplications(userId: string, take: number) {
     return prisma.application.findMany({
       where: { userId },

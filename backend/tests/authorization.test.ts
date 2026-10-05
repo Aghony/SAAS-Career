@@ -110,4 +110,37 @@ describe("Authorization - Isolasi Antar User", () => {
 
     expect(res.status).toBe(404);
   });
+
+  it("User B tidak bisa mengubah interview milik User A", async () => {
+    const createRes = await request(app)
+      .post("/api/applications")
+      .set("Authorization", `Bearer ${tokenA}`)
+      .send({ company: "Rahasia", position: "Engineer" });
+    const applicationId = createRes.body.data.application.id;
+
+    const interviewRes = await request(app)
+      .post("/api/interviews")
+      .set("Authorization", `Bearer ${tokenA}`)
+      .send({ applicationId, type: "technical", scheduledAt: "2027-01-10T09:00:00.000Z" });
+
+    const res = await request(app)
+      .patch(`/api/interviews/${interviewRes.body.data.interview.id}`)
+      .set("Authorization", `Bearer ${tokenB}`)
+      .send({ status: "completed" });
+
+    expect(res.status).toBe(404);
+  });
+
+  it("User B tidak bisa menitipkan interview ke application milik User A", async () => {
+    const res = await request(app)
+      .post("/api/interviews")
+      .set("Authorization", `Bearer ${tokenB}`)
+      .send({
+        applicationId: applicationIdA,
+        type: "technical",
+        scheduledAt: "2027-01-10T09:00:00.000Z",
+      });
+
+    expect(res.status).toBe(404);
+  });
 });
