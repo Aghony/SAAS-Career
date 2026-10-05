@@ -7,6 +7,8 @@ import dashboardRoutes from "./routes/dasboard.routes.js";
 import applicationRoutes from "./routes/application.routes.js";
 import resumeRoutes from "./routes/resume.routes.js";
 import projectRoutes from "./routes/project.routes.js";
+import skillRoutes from "./routes/skill.routes.js";
+
 const app = express();
 
 app.use(cors({ origin: process.env.CORS_ORIGIN, credentials: true }));
@@ -21,6 +23,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/resumes", resumeRoutes);
 app.use("/api/projects", projectRoutes);
+app.use("/api/skills", skillRoutes);
 
 app.use(errorMiddleware);
 

@@ -96,4 +96,18 @@ describe("Authorization - Isolasi Antar User", () => {
 
     expect(res.status).toBe(404);
   });
+
+  it("User B tidak bisa mengubah skill milik User A", async () => {
+    const createRes = await request(app)
+      .post("/api/skills")
+      .set("Authorization", `Bearer ${tokenA}`)
+      .send({ name: "Skill Rahasia A", category: "other", proficiencyLevel: "expert" });
+
+    const res = await request(app)
+      .patch(`/api/skills/${createRes.body.data.skill.id}`)
+      .set("Authorization", `Bearer ${tokenB}`)
+      .send({ proficiencyLevel: "beginner" });
+
+    expect(res.status).toBe(404);
+  });
 });
