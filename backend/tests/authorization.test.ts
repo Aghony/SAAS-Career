@@ -143,4 +143,12 @@ describe("Authorization - Isolasi Antar User", () => {
 
     expect(res.status).toBe(404);
   });
+
+  it("Analytics User B tidak boleh menghitung data milik User A", async () => {
+    const res = await request(app).get("/api/analytics").set("Authorization", `Bearer ${tokenB}`);
+
+    expect(res.status).toBe(200);
+    expect(res.body.data.topCompanies).toHaveLength(0);
+    expect(res.body.data.totalInterviews).toBe(0);
+  });
 });

@@ -7,11 +7,12 @@ import { RegisterPage } from "./pages/RegisterPage";
 import { DashboardPage } from "./pages/DashboardPage";
 import { ApplicationsPage } from "./pages/ApplicationsPage";
 import { SettingsPage } from "./pages/SettingsPage";
-import { PlaceholderPage } from "./pages/PlaceholderPage";
+// import { PlaceholderPage } from "./pages/PlaceholderPage";
 import { ResumePage } from "./pages/ResumePage";
 import { ProjectsPage } from "./pages/ProjectsPage";
 import { SkillsPage } from "./pages/SkillsPage";
 import { InterviewsPage } from "./pages/InterviewsPage";
+import { AnalyticsPage } from "./pages/AnalyticsPage";
 
 function App() {
   return (
@@ -29,10 +30,7 @@ function App() {
               <Route path="/projects" element={<ProjectsPage />} />
               <Route path="/skills" element={<SkillsPage />} />
               <Route path="/interviews" element={<InterviewsPage />} />
-              <Route
-                path="/analytics"
-                element={<PlaceholderPage title="Analytics" />}
-              />
+              <Route path="/analytics" element={<AnalyticsPage />} />
               <Route path="/settings" element={<SettingsPage />} />
             </Route>
           </Route>

@@ -9,6 +9,7 @@ import resumeRoutes from "./routes/resume.routes.js";
 import projectRoutes from "./routes/project.routes.js";
 import skillRoutes from "./routes/skill.routes.js";
 import interviewRoutes from "./routes/interview.routes.js";
+import analyticsRoutes from "./routes/analytics.routes.js";
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use("/api/resumes", resumeRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/skills", skillRoutes);
 app.use("/api/interviews", interviewRoutes);
+app.use("/api/analytics", analyticsRoutes);
 
 app.use(errorMiddleware);
 
